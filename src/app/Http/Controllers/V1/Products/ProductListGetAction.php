@@ -26,6 +26,6 @@ class ProductListGetAction extends Controller
     public function __invoke(IProductListGetRequest $request): \Illuminate\Http\JsonResponse
     {
         $response = $this->productListGetUseCase->__invoke($request);
-        return $response;
+        return response()->json($response, 200);
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\UseCases\Products;
 
-use App\Http\Requests\V1\Products\IProductListGetRequest;
 use App\Http\Requests\V1\Products\ProductListGetRequest;
+use App\Http\Requests\V1\Products\IProductListGetRequest;
+use App\Http\Responses\V1\Products\ProductListGetResponse;
+use App\Http\Responses\V1\Products\IProductListGetResponse;
 
 class ProductListGetUseCase implements IProductListGetUseCase
 {
@@ -17,15 +19,9 @@ class ProductListGetUseCase implements IProductListGetUseCase
     /**
      * @param ProductListGetRequest $request
      */
-    public function __invoke(IProductListGetRequest $request)
+    public function __invoke(IProductListGetRequest $request): IProductListGetResponse
     {
         // Logic to retrieve and return the product list
-        return response()->json([
-            'products' => [
-                ['id' => 1, 'name' => 'Product A', 'price' => 100],
-                ['id' => 2, 'name' => 'Product B', 'price' => 150],
-                // ... more products
-            ],
-        ]);
+        return new ProductListGetResponse([]);
     }
 }
