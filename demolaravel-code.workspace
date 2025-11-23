@@ -6,6 +6,11 @@
 	],
 	"settings": {
 		"editor.formatOnSave": true,
+		"[php]": {
+            "editor.codeActionsOnSave": {
+                "source.organizeImports": true
+            }
+        }
 		"php-cs-fixer.executablePath": "${workspaceFolder}/src/vendor/bin/php-cs-fixer",
 		"php-cs-fixer.rules": "@PSR12",
 		"php-cs-fixer.allowRisky": true,

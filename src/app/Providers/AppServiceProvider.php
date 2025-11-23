@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Http\Requests\V1\Products\IProductListGetRequest;
-use App\Http\Requests\V1\Products\ProductListGetRequest;
-use App\UseCases\Products\IProductListGetUseCase;
+use App\Infra\Product\Services\ProductService;
+use App\Domain\Product\Services\IProductService;
 use App\UseCases\Products\ProductListGetUseCase;
+use App\UseCases\Products\IProductListGetUseCase;
+use App\Http\Requests\V1\Products\ProductListGetRequest;
+use App\Http\Requests\V1\Products\IProductListGetRequest;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -42,6 +44,18 @@ class AppServiceProvider extends ServiceProvider
 
     // Register user cases
     private function registerUseCases()
+    {
+        $this->app->bind(IProductListGetUseCase::class, ProductListGetUseCase::class);
+    }
+
+    // Register services
+    private function registerServices()
+    {
+        $this->app->bind(IProductService::class, ProductService::class);
+    }
+
+    // Register repositories
+    private function registerRepositories()
     {
         $this->app->bind(IProductListGetUseCase::class, ProductListGetUseCase::class);
     }

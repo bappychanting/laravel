@@ -10,10 +10,9 @@ use App\Http\Responses\V1\Products\IProductListGetResponse;
 class ProductListGetUseCase implements IProductListGetUseCase
 {
 
-    public function __contruct()
+    public function __construct()
     {
-        // Logic to retrieve and return the product list
-
+        // Constructor left intentionally empty; add dependencies here if needed.
     }
 
     /**
