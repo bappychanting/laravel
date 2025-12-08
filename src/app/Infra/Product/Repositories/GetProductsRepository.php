@@ -5,7 +5,6 @@ namespace App\Infra\Product\Repositories;
 use App\Models\Product;
 use App\Models\Entities\Products;
 use App\Models\Entities\Mappers\ProductsMapper;
-use App\Domain\Product\Services\DTO\ProductServiceInput;
 use App\Domain\Product\Repositories\IGetProductsRepository;
 
 class GetProductsRepository implements IGetProductsRepository

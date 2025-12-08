@@ -7,5 +7,5 @@ use App\Models\Entities\Products;
 interface IGetProductsRepository
 {
     // Define methods related to product operations
-    public function __invoke(string $keyword): Products;
+    public function __invoke(?string $keyword = null): Products;
 }
