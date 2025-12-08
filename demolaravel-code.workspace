@@ -1,21 +1,21 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"editor.formatOnSave": true,
-		"[php]": {
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "editor.formatOnSave": true,
+        "[php]": {
             "editor.codeActionsOnSave": {
                 "source.organizeImports": true
             }
-        }
-		"php-cs-fixer.executablePath": "${workspaceFolder}/src/vendor/bin/php-cs-fixer",
-		"php-cs-fixer.rules": "@PSR12",
-		"php-cs-fixer.allowRisky": true,
-		"php-cs-fixer.autoFixBySave": true,
-		"php-cs-fixer.autoFixByFormatter": true,
-    	"php-cs-fixer.config": "./src/.php-cs-fixer.dist.php"
-	}
+        },
+        "php-cs-fixer.executablePath": "${workspaceFolder}/src/vendor/bin/php-cs-fixer",
+        "php-cs-fixer.rules": "@PSR12",
+        "php-cs-fixer.allowRisky": true,
+        "php-cs-fixer.autoFixBySave": true,
+        "php-cs-fixer.autoFixByFormatter": true,
+        "php-cs-fixer.config": "./src/.php-cs-fixer.dist.php"
+    }
 }

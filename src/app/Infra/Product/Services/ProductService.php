@@ -3,60 +3,27 @@
 namespace App\Infra\Product\Services;
 
 use App\Domain\Product\Services\IProductService;
-use Illuminate\Support\Collection;
-use App\Models\Entities\Product as ProductEntity;
+use App\Domain\Product\Services\DTO\ProductServiceGetProductsInput;
+use App\Domain\Product\Repositories\IGetProductsRepository;
+use App\Domain\Product\Services\DTO\ProductServiceGetProductsOutput;
 
 class ProductService implements IProductService
 {
     /**
-     * Collection of product entities managed by this service.
-     *
-     * @var Collection<int, ProductEntity>
+     * @param GetProductsRepository $getProductsRepository
      */
-    protected Collection $products;
-
-    /**
-     * Accept an array of Product entities and store as a Collection.
-     *
-     * @param array<int, ProductEntity> $products
-     */
-    public function __construct(array $products = [])
-    {
-        $this->products = collect($products);
+    public function __construct(
+        private IGetProductsRepository $getProductsRepository
+    ){
     }
 
     /**
      * Return all products as a Collection of ProductEntity.
      */
-    public function getProducts(): Collection
+    public function getProducts(ProductServiceGetProductsInput $input): ProductServiceGetProductsOutput
     {
-        return $this->products;
-    }
+        $products = $this->getProductsRepository->__invoke($input->getKeyword());
 
-    /**
-     * Add a ProductEntity to the collection.
-     */
-    public function addProduct(ProductEntity $product): static
-    {
-        $this->products->push($product);
-
-        return $this;
-    }
-
-    /**
-     * Return array representation of the products collection.
-     * Uses entity `toArray()` if available.
-     *
-     * @return array<int,array>
-     */
-    public function toArray(): array
-    {
-        return $this->products->map(function ($p) {
-            if (is_object($p) && method_exists($p, 'toArray')) {
-                return $p->toArray();
-            }
-
-            return (array) $p;
-        })->all();
+        return new ProductServiceGetProductsOutput($products);
     }
 }

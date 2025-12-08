@@ -43,5 +43,14 @@ class Product extends Model
         'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
 
+    public function scopeSearch($query, $search='')
+    {
+        if (empty($search)) {
+            return $query;
+        } else {
+            return $query->where('name', 'LIKE', '%' . $search . '%');
+        }
+    }
+
 }
 

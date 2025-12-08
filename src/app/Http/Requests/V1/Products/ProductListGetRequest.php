@@ -2,19 +2,11 @@
 
 namespace App\Http\Requests\V1\Products;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class ProductListGetRequest extends FormRequest implements IProductListGetRequest
+class ProductListGetRequest extends BaseRequest implements IProductListGetRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
+    private const KEYWORD = 'keyword';
 
     /**
      * Get the validation rules that apply to the request.
@@ -24,7 +16,12 @@ class ProductListGetRequest extends FormRequest implements IProductListGetReques
     public function rules()
     {
         return [
-            //
+            self::KEYWORD => ['sometimes', 'nullable', 'string', 'max:255'],
         ];
+    }
+
+    public function getKeyword(): ?string
+    {
+        return $this->getParamValueStr(self::KEYWORD);
     }
 }

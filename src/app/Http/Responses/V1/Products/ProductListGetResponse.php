@@ -8,12 +8,16 @@ class ProductListGetResponse extends BaseResponse implements IProductListGetResp
 {
     public function toArrayResponse(): array
     {
-        return [
-            'products' => [
-                ['id' => 1, 'name' => 'Product A', 'price' => 100],
-                ['id' => 2, 'name' => 'Product B', 'price' => 150],
-                // ... more products
-            ],
-        ];
+        $products = [];
+        foreach($this->getProducts() as $product) {
+            $products[] = [
+                'name' => $product->getName(),
+                'price' => $product->getPrice(),
+                'details' => $product->getDetails(),
+                'quantity' => $product->getQuantity(),
+            ];
+        }
+
+        return $products;
     }
 }

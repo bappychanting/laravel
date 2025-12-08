@@ -9,6 +9,10 @@ use App\UseCases\Products\ProductListGetUseCase;
 use App\UseCases\Products\IProductListGetUseCase;
 use App\Http\Requests\V1\Products\ProductListGetRequest;
 use App\Http\Requests\V1\Products\IProductListGetRequest;
+use App\Domain\Product\Repositories\IGetProductsRepository;
+use App\Infra\Product\Repositories\CreateProductRepository;
+use App\Domain\Product\Repositories\ICreateProductRepository;
+use App\Infra\Product\Repositories\GetProductsRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +28,12 @@ class AppServiceProvider extends ServiceProvider
 
         // Register user cases
         $this->registerUseCases();
+
+        // Register services
+        $this->registerServices();
+
+        // Register repositories
+        $this->registerRepositories();
     }
 
     /**
@@ -57,6 +67,7 @@ class AppServiceProvider extends ServiceProvider
     // Register repositories
     private function registerRepositories()
     {
-        $this->app->bind(IProductListGetUseCase::class, ProductListGetUseCase::class);
+        $this->app->bind(ICreateProductRepository::class, CreateProductRepository::class);
+        $this->app->bind(IGetProductsRepository::class, GetProductsRepository::class);
     }
 }
